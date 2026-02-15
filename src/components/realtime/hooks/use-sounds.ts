@@ -1,39 +1,66 @@
 import { useCallback, useEffect, useRef } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export const useSounds = () => {
   const audioContextRef = useRef<AudioContext | null>(null);
   const pressBufferRef = useRef<AudioBuffer | null>(null);
   const releaseBufferRef = useRef<AudioBuffer | null>(null);
+  const soundsLoadedRef = useRef(false);
 
-  useEffect(() => {
-    const loadSound = async () => {
-      try {
-        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-        if (!AudioContext) return;
+  const loadSounds = useCallback(async () => {
+    if (soundsLoadedRef.current) return;
+    try {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContextClass) return;
 
-        const ctx = new AudioContext();
-        audioContextRef.current = ctx;
-
-        const response = await fetch('/assets/keycap-sounds/press.mp3');
-        const arrayBuffer = await response.arrayBuffer();
-        const decodedBuffer = await ctx.decodeAudioData(arrayBuffer);
-        pressBufferRef.current = decodedBuffer;
-
-        const releaseResponse = await fetch('/assets/keycap-sounds/release.mp3');
-        const releaseArrayBuffer = await releaseResponse.arrayBuffer();
-        const releaseDecodedBuffer = await ctx.decodeAudioData(releaseArrayBuffer);
-        releaseBufferRef.current = releaseDecodedBuffer;
-      } catch (error) {
-        console.error("Failed to load keycap sound", error);
+      if (!audioContextRef.current) {
+        audioContextRef.current = new AudioContextClass();
       }
+      const ctx = audioContextRef.current;
+
+      if (ctx.state === 'suspended') {
+        await ctx.resume();
+      }
+
+      const response = await fetch(`${basePath}/assets/keycap-sounds/press.mp3`);
+      if (!response.ok) return;
+      const arrayBuffer = await response.arrayBuffer();
+      const decodedBuffer = await ctx.decodeAudioData(arrayBuffer);
+      pressBufferRef.current = decodedBuffer;
+
+      const releaseResponse = await fetch(`${basePath}/assets/keycap-sounds/release.mp3`);
+      if (!releaseResponse.ok) return;
+      const releaseArrayBuffer = await releaseResponse.arrayBuffer();
+      const releaseDecodedBuffer = await ctx.decodeAudioData(releaseArrayBuffer);
+      releaseBufferRef.current = releaseDecodedBuffer;
+
+      soundsLoadedRef.current = true;
+    } catch (error) {
+      // Silently fail - sounds are optional
+    }
+  }, []);
+
+  // Only load sounds after first user interaction
+  useEffect(() => {
+    const handleInteraction = () => {
+      loadSounds();
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('keydown', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
     };
 
-    loadSound();
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('keydown', handleInteraction);
+    document.addEventListener('touchstart', handleInteraction);
 
     return () => {
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('keydown', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
       audioContextRef.current?.close();
     };
-  }, []);
+  }, [loadSounds]);
 
   const getContext = useCallback(() => {
     if (audioContextRef.current?.state === 'suspended') {
