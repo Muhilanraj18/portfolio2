@@ -9,7 +9,6 @@ import { sleep } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { usePreloader } from "./preloader";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
 import { Section, getKeyboardState } from "./animated-background-config";
 import { useSounds } from "./realtime/hooks/use-sounds";
 
@@ -43,7 +42,6 @@ const AnimatedBackground = () => {
   const keycapAnimationsRef = useRef<{ start: () => void; stop: () => void }>();
 
   const [keyboardRevealed, setKeyboardRevealed] = useState(false);
-  const router = useRouter();
 
   // --- Event Handlers ---
 
@@ -499,13 +497,21 @@ const AnimatedBackground = () => {
 
   // Reveal keyboard on load/route change
   useEffect(() => {
-    const hash = activeSection === "hero" ? "#" : `#${activeSection}`;
-  router.push("/" + hash, { scroll: false });
+    const hash = activeSection === "hero" ? "" : `#${activeSection}`;
+    // Update URL hash without causing navigation/refresh
+    if (typeof window !== 'undefined') {
+      const newHash = activeSection === "hero" ? "" : `#${activeSection}`;
+      if (window.location.hash !== newHash) {
+        window.history.replaceState(null, '', `${window.location.pathname}${newHash}`);
+      }
+    }
 
-  if (!splineApp || isLoading || keyboardRevealed) return;
-  updateKeyboardTransform();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [splineApp, isLoading, activeSection]);  return (
+    if (!splineApp || isLoading || keyboardRevealed) return;
+    updateKeyboardTransform();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [splineApp, isLoading, activeSection]);
+
+  return (
     <Suspense fallback={<SplineLoadingFallback />}>
       <Spline
         className="w-full h-full fixed"
@@ -514,7 +520,7 @@ const AnimatedBackground = () => {
           setSplineApp(app);
           bypassLoading();
         }}
-        scene="/assets/skills-keyboard.spline"
+        scene={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/assets/skills-keyboard.spline`}
       />
     </Suspense>
   );
