@@ -1,0 +1,12 @@
+# Deployment Status
+
+This file triggers the GitHub Actions workflow.
+
+Your portfolio is configured for GitHub Pages deployment.
+
+After pushing, check:
+1. Actions tab: https://github.com/Muhilanraj18/portfolio2/actions
+2. Wait for green checkmark ✅
+3. Visit: https://muhilanraj18.github.io/portfolio2/
+
+Last updated: February 15, 2026
