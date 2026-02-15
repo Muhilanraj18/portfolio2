@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} **/
 const nextConfig = {
+  output: 'export',
+  basePath: '/portfolio2',
+  assetPrefix: '/portfolio2/',
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
