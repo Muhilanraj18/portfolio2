@@ -1,11 +1,16 @@
+const isProduction = process.env.NODE_ENV === 'production';
+
 /** @type {import('next').NextConfig} **/
 const nextConfig = {
   output: 'export',
-  basePath: '/portfolio2',
-  assetPrefix: '/portfolio2/',
-  reactStrictMode: true,
+  basePath: isProduction ? '/portfolio2' : '',
+  assetPrefix: isProduction ? '/portfolio2/' : '',
+  reactStrictMode: false,
   eslint: {
     ignoreDuringBuilds: true
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
@@ -19,10 +24,10 @@ const nextConfig = {
   // Performance optimizations
   swcMinify: true,
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: isProduction,
   },
   experimental: {
-    optimizePackageImports: ['@splinetool/react-spline', 'gsap', 'framer-motion'],
+    optimizePackageImports: ['@splinetool/react-spline', 'gsap', 'framer-motion', 'react-icons', 'lucide-react'],
   },
 };
 

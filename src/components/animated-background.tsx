@@ -151,8 +151,9 @@ const AnimatedBackground = () => {
 
     // Section transitions
     createSectionTimeline("#skills", "skills", "hero");
-    createSectionTimeline("#projects", "projects", "skills", "top 70%");
-    createSectionTimeline("#contact", "contact", "projects", "top 30%");
+    createSectionTimeline("#experience", "experience", "skills", "top 60%");
+    createSectionTimeline("#projects", "projects", "experience", "top 70%");
+    createSectionTimeline("#contact", "contact", "projects", "top 10%");
   };
 
   const getBongoAnimation = () => {

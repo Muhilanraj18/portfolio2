@@ -267,6 +267,27 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.GIT,
     ],
   },
+  {
+    id: 2,
+    startDate: "2024",
+    endDate: "2024",
+    title: "Web Development Intern",
+    company: "Grow My Therapy",
+    description: [
+      "Gained hands-on exposure to real-world web development environments and professional project workflows.",
+      "Developed responsive and structured frontend interfaces, translating design concepts into functional web pages using modern web technologies.",
+      "Strengthened understanding of clean code practices, component-based thinking, and efficient UI structuring.",
+      "Learned how development teams collaborate, manage tasks, and deliver projects within deadlines.",
+      "Improved ability to analyze requirements, adapt to professional coding standards, and build scalable web solutions aligned with business needs.",
+      "The internship played a key role in shaping practical understanding of software development in an industry setting.",
+    ],
+    skills: [
+      SkillNames.HTML,
+      SkillNames.CSS,
+      SkillNames.JS,
+      SkillNames.GIT,
+    ],
+  },
 ];
 
 export const themeDisclaimers = {

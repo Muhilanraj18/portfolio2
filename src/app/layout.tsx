@@ -1,23 +1,26 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import { config } from "@/data/config";
 
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
-import AppOverlays from "@/components/app-overlays";
+import dynamic from "next/dynamic";
 import { Providers } from "@/components/providers";
+
+const Header = dynamic(() => import("@/components/header/header"), { ssr: true });
+const Footer = dynamic(() => import("@/components/footer/footer"), { ssr: true });
+const AppOverlays = dynamic(() => import("@/components/app-overlays"), { ssr: false });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: config.title,
   description: config.description.long,
   keywords: config.keywords,
   authors: [{ name: config.author }],
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
   openGraph: {
     title: config.title,
     description: config.description.short,

@@ -7,6 +7,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalTrigger,
+  useModal,
 } from "../ui/animated-modal";
 import { FloatingDock } from "../ui/floating-dock";
 import Link from "next/link";
@@ -20,16 +21,29 @@ import SectionWrapper from "../ui/section-wrapper";
 
 const ProjectsSection = () => {
   return (
-    <SectionWrapper id="projects" className="max-w-7xl mx-auto md:h-[130vh]">
-      <SectionHeader id='projects' title="Projects" />
-      <div className="grid grid-cols-1 md:grid-cols-3">
+    <SectionWrapper id="projects" className="max-w-7xl mx-auto min-h-screen pb-20">
+      <SectionHeader id='projects' title="Projects" className="mb-12" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 px-4 md:px-8">
         {projects.map((project, index) => (
-          <Modall key={project.src} project={project} />
+          <Modall key={project.id} project={project} />
         ))}
       </div>
     </SectionWrapper>
   );
 };
+
+const CancelButton = () => {
+  const { setOpen } = useModal();
+  return (
+    <button
+      onClick={() => setOpen(false)}
+      className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28"
+    >
+      Cancel
+    </button>
+  );
+};
+
 const Modall = ({ project }: { project: Project }) => {
   return (
     <div className="flex items-center justify-center">
@@ -63,9 +77,7 @@ const Modall = ({ project }: { project: Project }) => {
             </ModalContent>
           </SmoothScroll>
           <ModalFooter className="gap-4">
-            <button className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
-              Cancel
-            </button>
+            <CancelButton />
             <Link href={project.live} target="_blank">
               <button className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
                 Visit

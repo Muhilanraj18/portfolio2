@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import SmoothScroll from "@/components/smooth-scroll";
 import { cn } from "@/lib/utils";
-import SkillsSection from "@/components/sections/skills";
-import ExperienceSection from "@/components/sections/experience";
-import ProjectsSection from "@/components/sections/projects";
-import ContactSection from "@/components/sections/contact";
 import HeroSection from "@/components/sections/hero";
+
+// Lazy load heavy sections
+const SkillsSection = dynamic(() => import("@/components/sections/skills"), { ssr: false });
+const ExperienceSection = dynamic(() => import("@/components/sections/experience"), { ssr: false });
+const ProjectsSection = dynamic(() => import("@/components/sections/projects"), { ssr: false });
+const ContactSection = dynamic(() => import("@/components/sections/contact"), { ssr: false });
 
 // Lazy load the heavy 3D component
 const AnimatedBackground = dynamic(

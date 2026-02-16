@@ -282,6 +282,73 @@ const projects: Project[] = [
     },
   },
   {
+    id: "inan-build",
+    category: "PC Configuration Tool",
+    title: "InanBuild",
+    src: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&q=80",
+    screenshots: ["landing.png"],
+    live: "#",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.html,
+        PROJECT_SKILLS.css,
+        PROJECT_SKILLS.js,
+      ],
+      backend: [],
+    },
+    get content(): JSX.Element {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            InanBuild is an intelligent PC configuration and system design platform built to simplify the complex process of custom PC building. The project focuses on helping users design optimized computer systems based on performance requirements, budget constraints, and future scalability.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+          <p className="font-mono mb-2 mt-8">
+            It provides a structured approach to selecting compatible hardware components such as processors, graphics cards, memory, storage, and power supplies, ensuring balanced system performance.
+          </p>
+          <p className="font-mono mb-2 mt-4">
+            The platform is designed with a clean, modern user interface that enhances usability for both beginners and experienced users. Emphasis is placed on logical component selection, system efficiency, and real-world hardware understanding.
+          </p>
+          <p className="font-mono mb-2 mt-4">
+            This project demonstrates strong problem-solving skills, deep interest in computer architecture, and the ability to translate technical knowledge into a practical, user-centric software solution.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "inan-infinites",
+    category: "Company Website",
+    title: "Inan Infinites",
+    src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    screenshots: ["landing.png"],
+    live: "#",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.html,
+        PROJECT_SKILLS.css,
+        PROJECT_SKILLS.js,
+      ],
+      backend: [],
+    },
+    get content(): JSX.Element {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            The Inan Infinites website serves as the official digital foundation of a product-based technology startup focused on building long-term, high-impact innovations. The platform is designed to reflect a premium, futuristic, and research-driven mindset inspired by leading global technology companies.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+          <p className="font-mono mb-2 mt-8">
+            It communicates the brand&apos;s vision of creating powerful, scalable, and deeply engineered products rather than short-term applications. The website emphasizes clean architecture, smooth animations, responsive layouts, and strong visual hierarchy to deliver a professional and trustworthy brand presence.
+          </p>
+          <p className="font-mono mb-2 mt-4">
+            Beyond being a marketing website, it acts as a central hub for showcasing innovation philosophy, upcoming product ideas, and technical direction. This project highlights skills in frontend architecture, UI/UX design, branding consistency, and startup-level product thinking.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
     id: "inan-book",
     category: "Web Application",
     title: "Inan Book",
@@ -340,6 +407,43 @@ const projects: Project[] = [
           </p>
           <p className="font-mono mb-2 mt-4">
             The responsive design ensures the resume builder works seamlessly across all devices, making it accessible for job seekers on the go.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "portfolio",
+    category: "3D Portfolio",
+    title: "3D Interactive Portfolio",
+    src: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
+    screenshots: ["landing.png"],
+    live: "https://muhilanraj18.github.io/portfolio2/",
+    github: "https://github.com/Muhilanraj18/portfolio2",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.next,
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.spline,
+        PROJECT_SKILLS.gsap,
+        PROJECT_SKILLS.framerMotion,
+      ],
+      backend: [],
+    },
+    get content(): JSX.Element {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            This very portfolio you&apos;re viewing! A 3D interactive portfolio built with Next.js, React, TypeScript, and Spline 3D. Features an interactive 3D keyboard, smooth scroll animations, particle effects, elastic cursor, and a clean modern design.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+          <p className="font-mono mb-2 mt-8">
+            Built with performance in mind — lazy loading, code splitting, and optimized bundle sizes. The 3D keyboard responds to scroll position and key presses, creating an immersive and unique portfolio experience.
+          </p>
+          <p className="font-mono mb-2 mt-4">
+            Deployed on GitHub Pages with automated CI/CD via GitHub Actions for seamless updates.
           </p>
         </div>
       );

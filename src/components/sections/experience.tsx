@@ -5,10 +5,12 @@ import { cn } from "@/lib/utils";
 import SectionWrapper from "../ui/section-wrapper";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 const ExperienceSection = () => {
   return (
     <SectionWrapper
+      id="experience"
       className="flex flex-col items-center justify-center min-h-[120vh] py-20 z-10"
     >
       <div className="w-full max-w-4xl px-4 md:px-8 mx-auto">
@@ -90,9 +92,11 @@ const ExperienceCard = ({
                   variant="outline"
                   className="gap-2 text-xs font-normal bg-secondary/30 hover:bg-secondary/50 transition-colors border-transparent"
                 >
-                  <img
+                  <Image
                     src={skill.icon}
                     alt={skill.label}
+                    width={14}
+                    height={14}
                     className="w-3.5 h-3.5 object-contain opacity-80"
                   />
                   {skill.label}

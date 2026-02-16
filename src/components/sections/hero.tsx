@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import { File, Github, Linkedin } from "lucide-react";
+import { File } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -11,7 +11,7 @@ import {
 import { usePreloader } from "../preloader";
 import { BlurIn, BoxReveal } from "../reveal-animations";
 import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { config } from "@/data/config";
 
 import SectionWrapper from "../ui/section-wrapper";
@@ -94,15 +94,16 @@ const HeroSection = () => {
                     </TooltipContent>
                   </Tooltip>
                   <div className="flex items-center justify-center gap-2">
-                    <Button variant={"outline"} size="icon">
-                      <SiX size={20} />
-                    </Button>
-                    <Button variant={"outline"} size="icon">
-                      <SiGithub size={20} />
-                    </Button>
-                    <Button variant={"outline"} size="icon">
-                      <SiLinkedin size={20} />
-                    </Button>
+                    <Link href={config.social.github} target="_blank">
+                      <Button variant={"outline"} size="icon">
+                        <SiGithub size={20} />
+                      </Button>
+                    </Link>
+                    <Link href={config.social.linkedin} target="_blank">
+                      <Button variant={"outline"} size="icon">
+                        <SiLinkedin size={20} />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

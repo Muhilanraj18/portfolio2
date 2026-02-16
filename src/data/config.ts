@@ -34,11 +34,11 @@ const config = {
     return this.site + "/assets/seo/og-image.png";
   },
   social: {
-    twitter: "https://x.com/muhilanraj",
+    twitter: "",
     linkedin: "https://www.linkedin.com/in/muhilanraj",
-    instagram: "https://www.instagram.com/muhilanraj",
-    facebook: "https://www.facebook.com/muhilanraj",
-    github: "https://github.com/muhilanraj18",
+    instagram: "",
+    facebook: "",
+    github: "https://github.com/Muhilanraj18",
   },
 };
 export { config };
