@@ -9,6 +9,14 @@ const Particles = dynamic(() => import("@/components/Particles"), {
   loading: () => null,
 });
 
+const ElasticCursor = dynamic(
+  () => import("@/components/ui/ElasticCursor"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
 export default function AppOverlays() {
   return (
     <Suspense fallback={null}>
@@ -16,6 +24,7 @@ export default function AppOverlays() {
         className="fixed inset-0 -z-10 animate-fade-in"
         quantity={30}
       />
+      <ElasticCursor />
     </Suspense>
   );
 }
