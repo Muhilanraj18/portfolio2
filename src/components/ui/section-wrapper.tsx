@@ -13,6 +13,7 @@ const SectionWrapper = ({ id, className, children, ...props }: SectionWrapperPro
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
+    layoutEffect: false,
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
